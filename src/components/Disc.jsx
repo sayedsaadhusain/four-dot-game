@@ -9,7 +9,7 @@ const Disc = ({ player, isWinning }) => {
     };
 
     return (
-        <div className="w-10 h-10 md:w-16 md:h-16 lg:w-[4.5rem] lg:h-[4.5rem] xl:w-[5.5rem] xl:h-[5.5rem] rounded-full overflow-visible relative bg-blue-900 border-2 border-blue-950/30 flex items-center justify-center p-0.5">
+        <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full overflow-visible relative bg-blue-900 border-2 border-blue-950/30 flex items-center justify-center p-0.5">
             {/* The empty hole background */}
             <div className={`w-full h-full rounded-full transition-all duration-300 ${player === 0 ? getDiscColor() : 'bg-transparent'}`}></div>
 

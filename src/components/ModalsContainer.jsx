@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Trophy, Users, Cpu, Play } from 'lucide-react';
 
@@ -92,14 +92,28 @@ const ModalWrapper = ({ children }) => (
 );
 
 const LeaderboardPanel = () => {
-    const statsJSON = localStorage.getItem('connect4Stats');
-    const stats = statsJSON ? JSON.parse(statsJSON) : { p1Wins: 0, p2Wins: 0, gamesPlayed: 0 };
+    const [stats, setStats] = useState(() => {
+        const statsJSON = localStorage.getItem('connect4Stats');
+        return statsJSON ? JSON.parse(statsJSON) : { p1Wins: 0, p2Wins: 0, gamesPlayed: 0 };
+    });
 
     if (stats.gamesPlayed === 0) return null;
 
+    const resetStats = () => {
+        localStorage.removeItem('connect4Stats');
+        setStats({ p1Wins: 0, p2Wins: 0, gamesPlayed: 0 });
+    };
+
     return (
-        <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+        <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700 relative">
             <h3 className="text-sm uppercase tracking-widest font-bold text-gray-500 mb-4">Local Leaderboard</h3>
+            <button
+                onClick={resetStats}
+                className="absolute top-6 right-0 text-[10px] text-red-500 hover:text-red-700 font-bold px-2 py-1 bg-red-50 dark:bg-red-900/20 rounded-md transition-colors"
+                title="Reset Leaderboard"
+            >
+                RESET
+            </button>
             <div className="flex justify-between items-center px-4">
                 <div className="flex flex-col items-center gap-1">
                     <span className="text-disc-red font-black text-2xl">{stats.p1Wins}</span>
