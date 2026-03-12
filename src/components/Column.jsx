@@ -18,7 +18,7 @@ const Column = ({ colIndex, colData, dropDisc, winningCells, currentPlayer, game
 
     return (
         <div
-            className="flex flex-col-reverse gap-2 cursor-pointer transition-colors duration-200 rounded-full p-1"
+            className="flex flex-col-reverse gap-2 md:gap-3 lg:gap-4 cursor-pointer transition-colors duration-200 rounded-full p-1 lg:p-2"
             onClick={dropDisc}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
