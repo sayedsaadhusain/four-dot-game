@@ -28,6 +28,16 @@
     /* Prevents pull-to-refresh and elastic scrolling */
   }
 
+  @media (min-width: 1024px) {
+
+    html,
+    body,
+    #root {
+      overflow: auto;
+      touch-action: auto;
+    }
+  }
+
   body {
     transition: background-color 300ms, color 300ms;
     font-family: sans-serif;
