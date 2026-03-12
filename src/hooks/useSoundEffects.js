@@ -1,9 +1,8 @@
-import { useCallback } from 'react';
-// A completely fake simple implementation of useSound to avoid the dependency missing audio assets issue, or we can use empty urls.
-// For the sake of UI we don't have local sound files, so we'll just mock it or play tiny base64 sounds.
-// Actually, let's use tiny beep sounds with AudioContext.
+import { useCallback, useRef } from 'react';
+import dropSfx from '../assets/mixkit-small-wood-plank-pile-drop-3141.wav';
 
 export function useSoundEffects(enabled = true) {
+    const dropAudioRef = useRef(null);
 
     const playTone = useCallback((freq, type = 'sine', duration = 0.1) => {
         if (!enabled) return;
@@ -22,12 +21,26 @@ export function useSoundEffects(enabled = true) {
         } catch (e) { }
     }, [enabled]);
 
-    const playDrop = () => playTone(300, 'sine', 0.2);
-    const playWin = () => {
+    const playDrop = useCallback(() => {
+        if (!enabled) return;
+        try {
+            // Reuse or create audio element
+            if (!dropAudioRef.current) {
+                dropAudioRef.current = new Audio(dropSfx);
+            }
+            const audio = dropAudioRef.current;
+            audio.currentTime = 0;
+            audio.volume = 0.5;
+            audio.play().catch(() => { });
+        } catch (e) { }
+    }, [enabled]);
+
+    const playWin = useCallback(() => {
         playTone(400, 'square', 0.2);
         setTimeout(() => playTone(500, 'square', 0.4), 200);
-    };
-    const playClick = () => playTone(600, 'triangle', 0.1);
+    }, [playTone]);
+
+    const playClick = useCallback(() => playTone(600, 'triangle', 0.1), [playTone]);
 
     return {
         playDrop,

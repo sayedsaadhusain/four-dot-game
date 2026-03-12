@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import GameBoard from './components/GameBoard';
 import ScoreBoard from './components/ScoreBoard';
 import ModalsContainer from './components/ModalsContainer';
@@ -9,7 +9,7 @@ import { useSoundEffects } from './hooks/useSoundEffects';
 function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [soundEnabled, setSoundEnabled] = useState(true);
-  const { playClick } = useSoundEffects(soundEnabled);
+  const { playClick, playDrop } = useSoundEffects(soundEnabled);
 
   const game = useGameLogic();
 
@@ -51,7 +51,7 @@ function App() {
           />
           <GameBoard
             board={game.board}
-            dropDisc={game.dropDisc}
+            dropDisc={(col) => { game.dropDisc(col); playDrop(); }}
             winningCells={game.winningCells}
             currentPlayer={game.currentPlayer}
             gameOver={game.isGameOver}
