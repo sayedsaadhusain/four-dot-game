@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@theme {
+  --color-board-blue: #2E5BFF;
+  --color-slot-dark: #1e2433;
+  --color-disc-red: #FF4560;
+  --color-disc-yellow: #FFD028;
+  --shadow-glow-red: 0 0 15px rgba(255, 69, 96, 0.6);
+  --shadow-glow-yellow: 0 0 15px rgba(255, 208, 40, 0.6);
+  --shadow-glow-board: 0 0 25px rgba(46, 91, 255, 0.4);
+  --shadow-neon: 0 0 10px rgba(0, 255, 255, 0.5), 0 0 20px rgba(0, 255, 255, 0.3);
+  --animate-drop: drop 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@layer base {
+  body {
+    transition: background-color 300ms, color 300ms;
+    font-family: sans-serif;
+  }
+}
+
+@layer utilities {
+  .glass {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  .glass-dark {
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+}
+
+@keyframes drop {
+  0% {
+    transform: translateY(-300%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
