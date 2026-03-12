@@ -35,7 +35,7 @@ function App() {
   };
 
   return (
-    <div className={`min-h-screen flex flex-col items-center justify-center p-4 transition-colors duration-500`}>
+    <div className={`h-full w-full flex flex-col items-center justify-center p-2 sm:p-4 transition-colors duration-500 overflow-hidden`}>
       <header className="mb-8 text-center">
         <h1 className="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-disc-red to-disc-yellow drop-shadow-lg mb-2">
           Connect Four
