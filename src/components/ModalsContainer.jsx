@@ -14,18 +14,18 @@ const ModalsContainer = ({ gameState, soundEnabled }) => {
                         <h2 className="text-4xl font-black bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">Pick A Mode</h2>
                         <div className="space-y-4 flex flex-col items-center">
                             <button
-                                className="w-full flex items-center justify-between p-4 rounded-xl font-bold bg-blue-100 text-blue-900 hover:bg-blue-200 transition-colors group"
+                                className="w-full flex items-center justify-between p-4 rounded-xl font-bold bg-blue-100 text-blue-900 hover:bg-blue-200 transition-colors group focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-500"
                                 onClick={() => selectMode('PvP')}
                             >
-                                <div className="flex items-center gap-4"><Users /> <span className="text-lg">Player vs Player</span></div>
-                                <Play className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                                <div className="flex items-center gap-4"><Users aria-hidden="true" /> <span className="text-lg">Player vs Player</span></div>
+                                <Play className="opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
                             </button>
                             <button
-                                className="w-full flex items-center justify-between p-4 rounded-xl font-bold bg-purple-100 text-purple-900 hover:bg-purple-200 transition-colors group"
+                                className="w-full flex items-center justify-between p-4 rounded-xl font-bold bg-purple-100 text-purple-900 hover:bg-purple-200 transition-colors group focus:outline-none focus-visible:ring-4 focus-visible:ring-purple-500"
                                 onClick={() => selectMode('PvAI')}
                             >
-                                <div className="flex items-center gap-4"><Cpu /> <span className="text-lg">Player vs AI</span></div>
-                                <Play className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                                <div className="flex items-center gap-4"><Cpu aria-hidden="true" /> <span className="text-lg">Player vs AI</span></div>
+                                <Play className="opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
                             </button>
                         </div>
 
@@ -42,7 +42,7 @@ const ModalsContainer = ({ gameState, soundEnabled }) => {
                         {/* Background decorative glow */}
                         <div className={`absolute top-0 right-0 left-0 h-32 blur-3xl rounded-full opacity-30 -translate-y-1/2 ${winner === 1 ? 'bg-disc-red' : winner === 2 ? 'bg-disc-yellow' : 'bg-gray-500'}`}></div>
 
-                        <Trophy className={`mx-auto mb-6 w-20 h-20 ${winner === 1 ? 'text-disc-red' : winner === 2 ? 'text-disc-yellow' : 'text-gray-400'}`} />
+                        <Trophy className={`mx-auto mb-6 w-20 h-20 ${winner === 1 ? 'text-disc-red' : winner === 2 ? 'text-disc-yellow' : 'text-gray-400'}`} aria-hidden="true" />
 
                         <h2 className="text-4xl font-black mb-2 dark:text-white">
                             {winner === 'draw' ? "It's a Draw!" : winner === 1 ? 'Player 1 Wins!' : gameMode === 'PvP' ? 'Player 2 Wins!' : 'AI Wins!'}
@@ -55,13 +55,13 @@ const ModalsContainer = ({ gameState, soundEnabled }) => {
                         <div className="flex flex-col gap-3">
                             <button
                                 onClick={resetGame}
-                                className="w-full py-4 rounded-xl font-bold text-white bg-indigo-600 hover:bg-indigo-700 hover:scale-105 active:scale-95 transition-all shadow-lg"
+                                className="w-full py-4 rounded-xl font-bold text-white bg-indigo-600 hover:bg-indigo-700 hover:scale-105 active:scale-95 transition-all shadow-lg focus:outline-none focus-visible:ring-4 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900"
                             >
                                 Play Again
                             </button>
                             <button
                                 onClick={newGame}
-                                className="w-full py-4 rounded-xl font-bold text-gray-700 bg-gray-100 dark:bg-gray-800 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                                className="w-full py-4 rounded-xl font-bold text-gray-700 bg-gray-100 dark:bg-gray-800 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-gray-400 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900"
                             >
                                 Main Menu
                             </button>
@@ -79,6 +79,8 @@ const ModalWrapper = ({ children }) => (
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
+        role="dialog"
+        aria-modal="true"
     >
         <motion.div
             initial={{ scale: 0.9, y: 50 }}
@@ -109,8 +111,9 @@ const LeaderboardPanel = () => {
             <h3 className="text-sm uppercase tracking-widest font-bold text-gray-500 mb-4">Local Leaderboard</h3>
             <button
                 onClick={resetStats}
-                className="absolute top-6 right-0 text-[10px] text-red-500 hover:text-red-700 font-bold px-2 py-1 bg-red-50 dark:bg-red-900/20 rounded-md transition-colors"
+                className="absolute top-6 right-0 text-[10px] text-red-500 hover:text-red-700 font-bold px-2 py-1 bg-red-50 dark:bg-red-900/20 rounded-md transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500"
                 title="Reset Leaderboard"
+                aria-label="Reset Leaderboard"
             >
                 RESET
             </button>

@@ -3,7 +3,11 @@ import Column from './Column';
 
 const GameBoard = ({ board, dropDisc, winningCells, currentPlayer, gameOver }) => {
     return (
-        <div className="relative p-3 md:p-5 lg:p-6 bg-board-blue rounded-3xl lg:rounded-[2rem] shadow-glow-board border-4 md:border-6 lg:border-8 border-[#1b3cb3] max-w-full overflow-hidden">
+        <div
+            className="relative p-3 md:p-5 lg:p-6 bg-board-blue rounded-3xl lg:rounded-[2rem] shadow-glow-board border-4 md:border-6 lg:border-8 border-[#1b3cb3] max-w-full overflow-hidden"
+            role="region"
+            aria-label="Connect Four Game Board"
+        >
             <div className="flex gap-2 md:gap-3 lg:gap-4 justify-center">
                 {board.map((col, colIndex) => (
                     <Column
